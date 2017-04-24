@@ -22,6 +22,10 @@ angular.module('trenchcoat', ['ngRoute'])
 
 })
 .controller('AddController', function($scope, $location) {
+  $scope.card = {};
+  $scope.getImages = function() {
+    console.log($scope.card)
+  }
 
 })
 .controller('ReviewController', function($scope, $location) {

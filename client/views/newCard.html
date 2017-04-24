@@ -1,7 +1,7 @@
 <div class="starter-template">
   <h1>Add a card:</h1>
-  <form name="submitWord" ng-submit="getImages()">
+  <form name="submitWord" ng-submit="getImages(); card.word = ''">
     <input name="newWord" type="text" ng-model="card.word" placeholder="Enter your word here" required>
-    <button type="button" name="button">Get Image</button>
+    <button type="submit" name="button">Get Image</button>
   </form>
 </div>
