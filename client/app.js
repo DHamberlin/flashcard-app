@@ -58,9 +58,9 @@ angular.module('trenchcoat', ['ngRoute'])
     .then((response) => {
       console.log(response)
 
-    })
       $scope.card.word = '';
       $scope.pics = [];
+    })
   }
 
 })

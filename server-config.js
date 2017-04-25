@@ -61,12 +61,19 @@ app.get('/cards', (req, res) => {
       res.status(404);
       res.send();
     } else {
+      shuffle(cards);
       res.status(200);
       res.send(cards);
     }
   })
 })
 
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+}
 
 
 module.exports = app;
