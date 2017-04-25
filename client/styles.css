@@ -15,7 +15,3 @@ iframe, object, embed {
   align: middle;
   position: relative;
 }
-
-iframe:hover {
-  border: 5%, solid, black;
-}

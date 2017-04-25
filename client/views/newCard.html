@@ -1,8 +1,9 @@
 <div class="starter-template">
   <h1>Add a card:</h1>
+  <!-- <form action="/images" method="post"> -->
   <form name="submitWord" ng-submit="getImages()">
-    <input name="newWord" type="text" ng-model="card.word" placeholder="Enter your word here" required>
-    <button type="submit" name="button">Get Image</button>
+    <input name="word" type="text" ng-model="card.word" placeholder="Enter your word here" required>
+    <button type="submit">Get Image</button>
   </form>
 </div>
 
@@ -14,8 +15,8 @@
                <a class="tumbnail" ng-click="selectImage(pic)">
                  <!-- <iframe src={{pic}} width="480" height="431.5850144092219" frameBorder="0" class="giphy-embed" allowFullScreen ng-click="selectPic()"></iframe>
                  <p><a href={{pic}}>via GIPHY</a></p> -->
-                   <iframe src="//giphy.com/embed/VkIet63SWUJa0" align="middle" allowfullscreen sandbox>{{pic}}</iframe>
-                   <!-- <p><a href="https://giphy.com/gifs/dude-VkIet63SWUJa0">via GIPHY</a></p> -->
+                   <!-- <iframe src="//giphy.com/embed/VkIet63SWUJa0" align="middle" allowfullscreen sandbox>{{pic}}</iframe> -->
+                   <iframe src={{pic}} align="middle" allowfullscreen sandbox>{{pic}}</iframe>
                </a>
            </div>
          </div>

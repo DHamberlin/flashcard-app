@@ -27,16 +27,22 @@ angular.module('trenchcoat', ['ngRoute'])
 
 })
 
-.controller('AddController', function($scope, $http) {
+.controller('AddController', function($scope, $http, $sce) {
   $scope.card = {};
 
   $scope.getImages = function() {
-    console.log($scope.card.word)
-    $http.post("images", $scope.card.word)
+    console.log(JSON.stringify($scope.card.word))
+    $http({
+      method: 'POST',
+      url: '/images',
+      headers: {'Content-Type': 'application/json'},
+      data: {data:$scope.card.word}
+    })
     .then((response) => {
-      $scope.pics = response.data.data.map((picObj) => {
-        return picObj.embed_url.substring(5);
-      }).slice(0,6);
+      $scope.pics = response.data.data.slice(0,8).map((picObj) => {
+        let url = picObj.embed_url.substring(5);
+        return $sce.trustAsResourceUrl(url);
+      });
       // $scope.pics = _.pluck(response.data.data.slice(0, 6), 'embed_url');
       console.log($scope.pics);
     })
@@ -45,6 +51,8 @@ angular.module('trenchcoat', ['ngRoute'])
   $scope.selectImage = function(pic) {
     console.log(pic);
   }
+
+  $scope.setGif
 
 })
 .controller('ReviewController', function($scope, $location) {
