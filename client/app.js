@@ -31,7 +31,6 @@ angular.module('trenchcoat', ['ngRoute'])
   $scope.card = {};
 
   $scope.getImages = function() {
-    console.log(JSON.stringify($scope.card.word))
     $http({
       method: 'POST',
       url: '/images',
@@ -40,22 +39,44 @@ angular.module('trenchcoat', ['ngRoute'])
     })
     .then((response) => {
       $scope.pics = response.data.data.slice(0,8).map((picObj) => {
-        let url = picObj.embed_url.substring(5);
-        return $sce.trustAsResourceUrl(url);
+        // let gifUrl = picObj.embed_url.substring(5);
+        let urlArr = picObj.embed_url.split('/');
+        let gifCode = urlArr.pop();
+        let gifUrl = `https://media.giphy.com/media/${gifCode}/giphy.gif`
+        return gifUrl;
+        // return $sce.trustAsResourceUrl(gifUrl);
       });
-      // $scope.pics = _.pluck(response.data.data.slice(0, 6), 'embed_url');
-      console.log($scope.pics);
     })
   };
 
-  $scope.selectImage = function(pic) {
-    console.log(pic);
+  $scope.expandImage = function($event) {
+
   }
 
-  $scope.setGif
+  $scope.selectImage = function(event, pic) {
+    $scope.card.pic = pic;
+    $scope.card.example = 'Lorem Ipsum'
+    console.log($scope.card);
+    $http({
+      method: 'POST',
+      url: '/create',
+      headers: {'Content-Type': 'application/json'},
+      data: {data: $scope.card}
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    // .then(response) => {
+    //   console.log(response);
+    // }
+  }
 
 })
-.controller('ReviewController', function($scope, $location) {
-
+.controller('ReviewController', function($scope, $location, $http) {
+  $http({
+    method: 'GET',
+    url: '/cards',
+  })
+  .then(res => console.log(res))
 })
 .run();
