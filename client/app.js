@@ -21,10 +21,15 @@ angular.module('trenchcoat', ['ngRoute'])
 .factory('Factory', function($http, $location) {
 
 })
-.controller('AddController', function($scope, $location) {
+.controller('AddController', function($scope, $http) {
+  // $http.defaults.useXDomain = true;
   $scope.card = {};
   $scope.getImages = function() {
-    console.log($scope.card)
+    console.log($scope.card.word)
+    $http.get(`giphy/${$scope.card.word}`)
+    .then((response) => {
+      console.log('response: ', response);
+    })
   }
 
 })
