@@ -17,19 +17,33 @@ angular.module('trenchcoat', ['ngRoute'])
       templateUrl: './views/logout.html',
       controller: 'ReviewController'
     })
+    .when('/choosePic', {
+      templateUrl: './views/choosePic.html',
+      controller: 'ReviewController'
+    })
 })
+
 .factory('Factory', function($http, $location) {
 
 })
+
 .controller('AddController', function($scope, $http) {
-  // $http.defaults.useXDomain = true;
   $scope.card = {};
+
   $scope.getImages = function() {
     console.log($scope.card.word)
-    $http.get(`giphy/${$scope.card.word}`)
+    $http.post("images", $scope.card.word)
     .then((response) => {
-      console.log('response: ', response);
+      $scope.pics = response.data.data.map((picObj) => {
+        return picObj.embed_url.substring(5);
+      }).slice(0,6);
+      // $scope.pics = _.pluck(response.data.data.slice(0, 6), 'embed_url');
+      console.log($scope.pics);
     })
+  };
+
+  $scope.selectImage = function(pic) {
+    console.log(pic);
   }
 
 })

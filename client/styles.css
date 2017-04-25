@@ -5,3 +5,17 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+iframe, object, embed {
+  max-width: 100%;
+  align: middle;
+  position: relative;
+}
+
+iframe:hover {
+  border: 5%, solid, black;
+}

@@ -2,22 +2,23 @@ const express = require('express');
 const db = require('./db-config');
 const http = require('http');
 const request = require('request');
-// const url = require('url');
-// const bodyParser = require('body-parser');
+const url = require('url');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 
 app.use(express.static(__dirname + '/client'));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/giphy*', (req, res) => {
+app.post('/images', (req, res) => {
   console.log('recieved');
+  console.log(req.body);
   let options = {
     "method": "GET",
     "hostname": "api.giphy.com",
     "port": null,
-    "path": "/v1/gifs/search?q=dog&api_key=dc6zaTOxFJmzC",
+    "path": `/v1/gifs/search?q=dog&api_key=dc6zaTOxFJmzC`,
     "headers": {
       "cache-control": "no-cache",
       "postman-token": "869209ce-5ce1-da50-5537-fe5075ae6c9b"
@@ -40,6 +41,8 @@ app.get('/giphy*', (req, res) => {
 
   call.end();
 })
+
+
 
 // function makeCall (callback) {
 //     // here we make a call using request module

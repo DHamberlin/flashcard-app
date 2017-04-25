@@ -1,0 +1,20 @@
+{
+  "name": "client",
+  "homepage": "https://github.com/DHamberlin/flashcard-app",
+  "authors": [
+    "David H <davidhamberlin@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
