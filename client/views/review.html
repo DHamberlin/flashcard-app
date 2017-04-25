@@ -2,3 +2,18 @@
   <h1>Review</h1>
   <p class="lead">Expose yourself<br>to knowledge</p>
 </div>
+
+<div class="container">
+	<div class="row">
+		<div class="info-card" ng-repeat="card in cards">
+				<div class="front">
+					<img class="card-image" src={{card.front}}>
+				</div>
+			<div class="back">
+				<h2>{{card.back}}</h2>
+				<p>
+					{{card.example}}
+				</p>
+			</div>
+		</div>
+</div>

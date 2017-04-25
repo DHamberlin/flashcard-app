@@ -23,10 +23,6 @@ angular.module('trenchcoat', ['ngRoute'])
     })
 })
 
-.factory('Factory', function($http, $location) {
-
-})
-
 .controller('AddController', function($scope, $http, $sce) {
   $scope.card = {};
 
@@ -49,13 +45,9 @@ angular.module('trenchcoat', ['ngRoute'])
     })
   };
 
-  $scope.expandImage = function($event) {
-
-  }
-
   $scope.selectImage = function(event, pic) {
     $scope.card.pic = pic;
-    $scope.card.example = 'Lorem Ipsum'
+    $scope.card.example = prompt('Enter usage example / extra info', 'Lorem Ipsum');
     console.log($scope.card);
     $http({
       method: 'POST',
@@ -65,10 +57,10 @@ angular.module('trenchcoat', ['ngRoute'])
     })
     .then((response) => {
       console.log(response)
+
     })
-    // .then(response) => {
-    //   console.log(response);
-    // }
+      $scope.card.word = '';
+      $scope.pics = [];
   }
 
 })
@@ -77,6 +69,9 @@ angular.module('trenchcoat', ['ngRoute'])
     method: 'GET',
     url: '/cards',
   })
-  .then(res => console.log(res))
+  .then(res => {
+    console.log(res.data)
+    $scope.cards = res.data
+  })
 })
 .run();
